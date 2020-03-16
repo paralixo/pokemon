@@ -1,9 +1,9 @@
 #include <iostream>
 #include "Pokemon.h"
 #include "Trainer.h"
-#include "Squirtle.h"
-#include "Charmander.h"
-#include "Bulbasaur.h"
+#include "pokemons/Squirtle.h"
+#include "pokemons/Charmander.h"
+#include "pokemons/Bulbasaur.h"
 
 int getInput() {
     int choice;
