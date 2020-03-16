@@ -53,10 +53,11 @@ void displayFightMenu() {
     std::cout << "Selection: ";
 }
 
-void handleFight(Trainer &trainer) {
+void handleFight(Trainer& trainer) {
     Trainer enemy = generateEnemy();
     std::cout << "Start a fight with : " + enemy.toString() << std::endl;
     int choice = 0;
+    int switchIndex = 0;
     do {
         displayFightMenu();
         choice = getInput();
@@ -65,7 +66,10 @@ void handleFight(Trainer &trainer) {
                 std::cout << "TODO: handle different attacks" << std::endl;
                 break;
             case 2:
-                std::cout << "TODO: change active pokemon" << std::endl;
+                std::cout << trainer.getTeamList() << std::endl;
+                switchIndex = getInput();
+                trainer.switchActivePokemon(switchIndex - 1);
+                std::cout << trainer.toString() << std::endl;
                 break;
             case 3:
                 std::cout << "TODO: catch pokemon" << std::endl;
