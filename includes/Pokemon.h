@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include "PokemonType.h"
+#include "enums/Type.h"
 
 class Pokemon {
 private:

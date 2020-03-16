@@ -20,7 +20,7 @@ void displayMainMenu() {
     std::cout << "Selection: ";
 }
 
-void changeTeamMember(Trainer& trainer) {
+void changeTeamMember(Trainer &trainer) {
     // TODO: check input
     // TODO: verify list of pokemons
     int teamIndex = 0;
@@ -36,7 +36,51 @@ void changeTeamMember(Trainer& trainer) {
     trainer.modifyPokemonTeam(teamIndex, listIndex);
 }
 
-void mainMenu(Trainer& trainer) {
+Trainer generateEnemy() {
+    // TODO: put pokemons in a file
+    std::vector<Pokemon> pokemons{Squirtle(1), Charmander(1), Bulbasaur(1)};
+    int randomIndex = std::rand() % pokemons.size();
+    Trainer enemy("Savage", pokemons[randomIndex]);
+    return enemy;
+}
+
+void displayFightMenu() {
+    std::cout << "Make your selection:\n";
+    std::cout << "1 - Attack\n";
+    std::cout << "2 - Change pokemon\n";
+    std::cout << "3 - Catch them all\n";
+    std::cout << "4 - Leave\n";
+    std::cout << "Selection: ";
+}
+
+void handleFight(Trainer &trainer) {
+    Trainer enemy = generateEnemy();
+    std::cout << "Start a fight with : " + enemy.toString() << std::endl;
+    int choice = 0;
+    do {
+        displayFightMenu();
+        choice = getInput();
+        switch (choice) {
+            case 1:
+                std::cout << "TODO: handle different attacks" << std::endl;
+                break;
+            case 2:
+                std::cout << "TODO: change active pokemon" << std::endl;
+                break;
+            case 3:
+                std::cout << "TODO: catch pokemon" << std::endl;
+                break;
+            case 4:
+                std::cout << "Quit." << std::endl;
+                break;
+            default:
+                std::cout << "Make a choice please." << std::endl;
+                break;
+        }
+    } while (choice != 4);
+}
+
+void mainMenu(Trainer &trainer) {
     int choice = 0;
     do {
         displayMainMenu();
@@ -49,16 +93,16 @@ void mainMenu(Trainer& trainer) {
                 changeTeamMember(trainer);
                 break;
             case 3:
-                std::cout << "Start a fight" << std::endl;
+                handleFight(trainer);
                 break;
             case 4:
-                std::cout << "Quit" << std::endl;
+                std::cout << "Quit." << std::endl;
                 break;
             default:
-                std::cout << "Make a choice please" << std::endl;
+                std::cout << "Make a choice please." << std::endl;
                 break;
         }
-    } while (choice!=4);
+    } while (choice != 4);
 }
 
 int main() {
