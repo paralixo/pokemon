@@ -17,6 +17,7 @@ private:
 
 public:
     Pokemon(const std::string &name, Type type, int level);
+    virtual ~Pokemon();
 
     const std::string &getName() const;
     void setName(const std::string &name);

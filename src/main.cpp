@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Pokemon.h"
+#include "Trainer.h"
 
 int getInput() {
     int choice;
@@ -16,17 +17,31 @@ void displayMainMenu() {
     std::cout << "Selection: ";
 }
 
-void mainMenu() {
+void changeTeamMember(Trainer& trainer) {
+    // TODO: check input
+    // TODO: verify list of pokemons
+    int teamIndex = 0;
+    std::cout << trainer.getTeamList() << std::endl;
+    teamIndex = getInput();
+
+    int listIndex = 0;
+    std::cout << trainer.getPokemonList() << std::endl;
+    listIndex = getInput();
+
+    trainer.modifyPokemonTeam(teamIndex, listIndex);
+}
+
+void mainMenu(Trainer& trainer) {
     int choice = 0;
     do {
         displayMainMenu();
         choice = getInput();
         switch (choice) {
             case 1:
-                std::cout << "Show List of pokemons" << std::endl;
+                std::cout << trainer.getPokemonList() << std::endl;
                 break;
             case 2:
-                std::cout << "Show my team" << std::endl;
+                changeTeamMember(trainer);
                 break;
             case 3:
                 std::cout << "Start a fight" << std::endl;
@@ -43,7 +58,21 @@ void mainMenu() {
 
 int main() {
     Pokemon carapuce("Carapute", Type::Water, 1);
-    std::cout << carapuce.toString() << std::endl;
-    mainMenu();
+    Pokemon salapute("Salapute", Type::Fire, 1);
+    Pokemon bulbipute("Bulbipute", Type::Grass, 1);
+    Trainer florian("Florian", carapuce);
+    florian.addPokemon(carapuce);
+    florian.addPokemon(bulbipute);
+    florian.addPokemon(salapute);
+    //florian.addPokemonInTeam(carapuce);
+    florian.addPokemonInTeam(bulbipute);
+    florian.addPokemonInTeam(salapute);
+
+    florian.switchActivePokemon(0);
+
+    //std::cout << carapuce.toString() << std::endl;
+    std::cout << florian.toString() << std::endl;
+
+    mainMenu(florian);
     return 0;
 }

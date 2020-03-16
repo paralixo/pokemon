@@ -87,3 +87,7 @@ std::string Pokemon::toString() {
            std::to_string(Pokemon::healthPoints) + "/" +
            std::to_string(Pokemon::maxHealthPoints);
 }
+
+Pokemon::~Pokemon() {
+
+}
