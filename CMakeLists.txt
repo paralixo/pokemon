@@ -4,6 +4,6 @@ project(pokemon)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-include_directories(include)
+include_directories(includes)
 
-add_executable(pokemon src/main.cpp src/Pokemon.cpp src/Trainer.cpp include/Trainer.h)
+add_executable(pokemon src/main.cpp src/Pokemon.cpp src/Trainer.cpp includes/Trainer.h)
