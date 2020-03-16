@@ -83,9 +83,9 @@ void Pokemon::setMaxHealthPoints(int maxHealthPoints) {
 }
 
 std::string Pokemon::toString() {
-    return Pokemon::name + " " + Pokemon::getTypeStr() + " lvl." + std::to_string(Pokemon::level) + " " +
+    return Pokemon::name + " (" + Pokemon::getTypeStr() + " lvl." + std::to_string(Pokemon::level) + " " +
            std::to_string(Pokemon::healthPoints) + "/" +
-           std::to_string(Pokemon::maxHealthPoints);
+           std::to_string(Pokemon::maxHealthPoints) + ")";
 }
 
 Pokemon::~Pokemon() {

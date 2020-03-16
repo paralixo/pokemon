@@ -1,6 +1,6 @@
 #include "Trainer.h"
 
-Trainer::Trainer(const std::string &name, Pokemon &activePokemon) : name(name), activePokemon(activePokemon) {}
+Trainer::Trainer(const std::string &name, Pokemon& activePokemon) : name(name), activePokemon(activePokemon) {}
 
 const std::string &Trainer::getName() const {
     return name;
@@ -35,7 +35,11 @@ void Trainer::setActivePokemon(Pokemon &activePokemon) {
 }
 
 void Trainer::addPokemon(Pokemon pokemon) {
-    pokemons.push_back(pokemon);
+    if (team.size() < 6) {
+        team.push_back(pokemon);
+    } else {
+        pokemons.push_back(pokemon);
+    }
 }
 
 void Trainer::addPokemonInTeam(Pokemon pokemon) {
@@ -46,7 +50,7 @@ void Trainer::addPokemonInTeam(Pokemon pokemon) {
 }
 
 void Trainer::switchActivePokemon(int index) {
-    activePokemon = team[index];
+    setActivePokemon(team[index]);
 }
 
 std::string Trainer::getPokemonList() {

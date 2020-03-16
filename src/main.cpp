@@ -16,7 +16,7 @@ void displayMainMenu() {
     std::cout << "1 - List\n";
     std::cout << "2 - Modify team\n";
     std::cout << "3 - Fight\n";
-    std::cout << "4 - Quitter\n";
+    std::cout << "4 - Quit\n";
     std::cout << "Selection: ";
 }
 
@@ -41,11 +41,13 @@ Trainer generateEnemy() {
     std::vector<Pokemon> pokemons{Squirtle(1), Charmander(1), Bulbasaur(1)};
     int randomIndex = std::rand() % pokemons.size();
     Trainer enemy("Savage", pokemons[randomIndex]);
+    enemy.addPokemonInTeam(pokemons[randomIndex]);
+    std::cout << "Enemy: " + enemy.toString() << std::endl;
     return enemy;
 }
 
 void displayFightMenu() {
-    std::cout << "Make your selection:\n";
+    std::cout << "What are you doing against your enemy?\n";
     std::cout << "1 - Attack\n";
     std::cout << "2 - Change pokemon\n";
     std::cout << "3 - Catch them all\n";
@@ -53,9 +55,15 @@ void displayFightMenu() {
     std::cout << "Selection: ";
 }
 
+void catchPokemon(Trainer& trainer, Trainer& enemy) {
+    Pokemon catchedPokemon = enemy.getActivePokemon();
+    trainer.addPokemon(catchedPokemon);
+    std::cout << "You catched " + catchedPokemon.toString() << std::endl;
+    std::cout << "You: " + trainer.toString() << std::endl;
+}
+
 void handleFight(Trainer& trainer) {
     Trainer enemy = generateEnemy();
-    std::cout << "Start a fight with : " + enemy.toString() << std::endl;
     int choice = 0;
     int switchIndex = 0;
     do {
@@ -72,16 +80,16 @@ void handleFight(Trainer& trainer) {
                 std::cout << trainer.toString() << std::endl;
                 break;
             case 3:
-                std::cout << "TODO: catch pokemon" << std::endl;
+                catchPokemon(trainer, enemy);
                 break;
             case 4:
-                std::cout << "Quit." << std::endl;
+                std::cout << "Fleeing the fight." << std::endl;
                 break;
             default:
                 std::cout << "Make a choice please." << std::endl;
                 break;
         }
-    } while (choice != 4);
+    } while (choice != 4 && choice != 3);
 }
 
 void mainMenu(Trainer &trainer) {
@@ -114,12 +122,12 @@ int main() {
     Charmander salapute(2);
     Bulbasaur bulbipute(1);
     Trainer florian("Florian", carapuce);
-    florian.addPokemon(carapuce);
-    florian.addPokemon(bulbipute);
-    florian.addPokemon(salapute);
-    //florian.addPokemonInTeam(carapuce);
-    florian.addPokemonInTeam(bulbipute);
-    florian.addPokemonInTeam(salapute);
+    //florian.addPokemon(carapuce);
+    //florian.addPokemon(bulbipute);
+    //florian.addPokemon(salapute);
+    florian.addPokemonInTeam(carapuce);
+    //florian.addPokemonInTeam(bulbipute);
+    //florian.addPokemonInTeam(salapute);
 
     florian.switchActivePokemon(0);
 

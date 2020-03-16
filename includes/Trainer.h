@@ -1,7 +1,6 @@
 #ifndef POKEMON_TRAINER_H
 #define POKEMON_TRAINER_H
 
-
 #include <iostream>
 #include <vector>
 #include "Pokemon.h"
@@ -23,7 +22,7 @@ public:
     void setPokemons(const std::vector<Pokemon> &pokemons);
     const std::vector<Pokemon> &getTeam() const;
     void setTeam(const std::vector<Pokemon> &team);
-    Pokemon &getActivePokemon() const;
+    Pokemon& getActivePokemon() const;
     void setActivePokemon(Pokemon &activePokemon);
 
     void addPokemon(Pokemon pokemon);
