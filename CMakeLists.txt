@@ -3,4 +3,4 @@ project(pokemon)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(pokemon main.cpp)
+add_executable(pokemon src/main.cpp src/Pokemon.cpp include/Pokemon.h enums/PokemonType.cpp)
