@@ -37,6 +37,7 @@ public:
     void addAttackName(const std::string &attackName);
 
     std::string toString();
+    void attack(Pokemon& target);
 };
 
 

@@ -12,7 +12,7 @@ int getInput() {
 }
 
 void displayMainMenu() {
-    std::cout << "Make your selection:\n";
+    std::cout << "\nMake your selection:\n";
     std::cout << "1 - List\n";
     std::cout << "2 - Modify team\n";
     std::cout << "3 - Fight\n";
@@ -47,7 +47,7 @@ Trainer generateEnemy() {
 }
 
 void displayFightMenu() {
-    std::cout << "What are you doing against your enemy?\n";
+    std::cout << "\nWhat are you doing against your enemy?\n";
     std::cout << "1 - Attack\n";
     std::cout << "2 - Change pokemon\n";
     std::cout << "3 - Catch them all\n";
@@ -62,16 +62,25 @@ void catchPokemon(Trainer& trainer, Trainer& enemy) {
     std::cout << "You: " + trainer.toString() << std::endl;
 }
 
+bool handleAttack(Trainer& trainer, Trainer& enemy) {
+    Pokemon& target = enemy.getActivePokemon();
+    trainer.getActivePokemon().attack(target);
+    std::cout << enemy.getActivePokemon().toString() << std::endl;
+    return target.getHealthPoints() <= 0;
+}
+
 void handleFight(Trainer& trainer) {
     Trainer enemy = generateEnemy();
     int choice = 0;
     int switchIndex = 0;
     do {
+        std::cout << "Enemy: ";
+        std::cout << enemy.toString() << std::endl;
         displayFightMenu();
         choice = getInput();
         switch (choice) {
             case 1:
-                std::cout << "TODO: handle different attacks" << std::endl;
+                choice = handleAttack(trainer, enemy) ? 4 : 1;
                 break;
             case 2:
                 std::cout << trainer.getTeamList() << std::endl;

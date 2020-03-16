@@ -48,6 +48,7 @@ int Pokemon::getHealthPoints() const {
 void Pokemon::setHealthPoints(int healthPoints) {
     if (healthPoints <= 0) {
         Pokemon::isKO = true;
+        Pokemon::healthPoints = 0;
     } else {
         Pokemon::isKO = false;
         Pokemon::healthPoints = healthPoints;
@@ -90,4 +91,8 @@ std::string Pokemon::toString() {
 
 Pokemon::~Pokemon() {
 
+}
+
+void Pokemon::attack(Pokemon& target) {
+    target.setHealthPoints(target.getHealthPoints() - 5);
 }
