@@ -1,17 +1,15 @@
-//
-// Created by flori on 16/03/2020.
-//
-
-#include "../include/Pokemon.h"
+#include "Pokemon.h"
 
 Pokemon::Pokemon(const std::string &name, Type type, int level) :
         name(name),
         type(type),
         level(level),
-        maxHealthPoints(30 + level * 10),
-        healthPoints(maxHealthPoints),
         isKO(false),
-        attackNames({}) {}
+        attackNames({}) {
+    int maxHealth = 30 + level * 10;
+    Pokemon::maxHealthPoints = maxHealth;
+    Pokemon::healthPoints = maxHealth;
+}
 
 const std::string &Pokemon::getName() const {
     return name;
@@ -19,6 +17,10 @@ const std::string &Pokemon::getName() const {
 
 void Pokemon::setName(const std::string &name) {
     Pokemon::name = name;
+}
+
+std::string Pokemon::getTypeStr() const {
+    return TypeStr[(int) type];
 }
 
 Type Pokemon::getType() const {
@@ -78,4 +80,10 @@ int Pokemon::getMaxHealthPoints() const {
 
 void Pokemon::setMaxHealthPoints(int maxHealthPoints) {
     Pokemon::maxHealthPoints = maxHealthPoints;
+}
+
+std::string Pokemon::toString() {
+    return Pokemon::name + " " + Pokemon::getTypeStr() + " lvl." + std::to_string(Pokemon::level) + " " +
+           std::to_string(Pokemon::healthPoints) + "/" +
+           std::to_string(Pokemon::maxHealthPoints);
 }

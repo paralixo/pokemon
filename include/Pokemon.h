@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include "../enums/PokemonType.cpp"
+#include "PokemonType.h"
 
 class Pokemon {
 private:
@@ -20,6 +20,7 @@ public:
 
     const std::string &getName() const;
     void setName(const std::string &name);
+    std::string getTypeStr() const;
     Type getType() const;
     void setType(Type type);
     int getLevel() const;
@@ -33,6 +34,8 @@ public:
     const std::vector<std::string> &getAttackNames() const;
     void setAttackNames(const std::vector<std::string> &attackNames);
     void addAttackName(const std::string &attackName);
+
+    std::string toString();
 };
 
 
