@@ -6,4 +6,4 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 
 include_directories(includes)
 
-add_executable(pokemon src/main.cpp src/Pokemon.cpp src/Trainer.cpp includes/Trainer.h)
+add_executable(pokemon src/main.cpp src/Pokemon.cpp src/Trainer.cpp src/Charmander.cpp includes/Charmander.h src/Squirtle.cpp includes/Squirtle.h src/Bulbasaur.cpp includes/Bulbasaur.h)

@@ -1,6 +1,9 @@
 #include <iostream>
 #include "Pokemon.h"
 #include "Trainer.h"
+#include "Squirtle.h"
+#include "Charmander.h"
+#include "Bulbasaur.h"
 
 int getInput() {
     int choice;
@@ -11,7 +14,7 @@ int getInput() {
 void displayMainMenu() {
     std::cout << "Make your selection:\n";
     std::cout << "1 - List\n";
-    std::cout << "2 - My team\n";
+    std::cout << "2 - Modify team\n";
     std::cout << "3 - Fight\n";
     std::cout << "4 - Quitter\n";
     std::cout << "Selection: ";
@@ -21,11 +24,13 @@ void changeTeamMember(Trainer& trainer) {
     // TODO: check input
     // TODO: verify list of pokemons
     int teamIndex = 0;
-    std::cout << trainer.getTeamList() << std::endl;
+    std::cout << trainer.getTeamList();
+    std::cout << "Remove: ";
     teamIndex = getInput();
 
     int listIndex = 0;
-    std::cout << trainer.getPokemonList() << std::endl;
+    std::cout << trainer.getPokemonList();
+    std::cout << "Add: ";
     listIndex = getInput();
 
     trainer.modifyPokemonTeam(teamIndex, listIndex);
@@ -57,9 +62,9 @@ void mainMenu(Trainer& trainer) {
 }
 
 int main() {
-    Pokemon carapuce("Carapute", Type::Water, 1);
-    Pokemon salapute("Salapute", Type::Fire, 1);
-    Pokemon bulbipute("Bulbipute", Type::Grass, 1);
+    Squirtle carapuce(1);
+    Charmander salapute(2);
+    Bulbasaur bulbipute(1);
     Trainer florian("Florian", carapuce);
     florian.addPokemon(carapuce);
     florian.addPokemon(bulbipute);
