@@ -17,6 +17,7 @@ void displayMainMenu() {
     std::cout << "2 - Modify team\n";
     std::cout << "3 - Fight\n";
     std::cout << "4 - Quit\n";
+    std::cout << "5 - Heal\n";
     std::cout << "Selection: ";
 }
 
@@ -58,8 +59,7 @@ void displayFightMenu() {
 void catchPokemon(Trainer& trainer, Trainer& enemy) {
     Pokemon catchedPokemon = enemy.getActivePokemon();
     trainer.addPokemon(catchedPokemon);
-    std::cout << "You catched " + catchedPokemon.toString() << std::endl;
-    std::cout << "You: " + trainer.toString() << std::endl;
+    std::cout << "You catched: " + catchedPokemon.toString() << std::endl;
 }
 
 bool handleAttack(Trainer& trainer, Trainer& enemy) {
@@ -119,6 +119,13 @@ void mainMenu(Trainer &trainer) {
             case 4:
                 std::cout << "Quit." << std::endl;
                 break;
+            case 5:
+                std::cout << "Healing!" << std::endl;
+                for (int i = 0; i < trainer.getTeam().size(); i++) {
+                    Pokemon pokemon = trainer.getTeam()[i];
+                    pokemon.setHealthPoints(pokemon.getMaxHealthPoints());
+                }
+                break;
             default:
                 std::cout << "Make a choice please." << std::endl;
                 break;
@@ -127,20 +134,11 @@ void mainMenu(Trainer &trainer) {
 }
 
 int main() {
-    Squirtle carapuce(1);
-    Charmander salapute(2);
-    Bulbasaur bulbipute(1);
-    Trainer florian("Florian", carapuce);
-    //florian.addPokemon(carapuce);
-    //florian.addPokemon(bulbipute);
-    //florian.addPokemon(salapute);
-    florian.addPokemonInTeam(carapuce);
-    //florian.addPokemonInTeam(bulbipute);
-    //florian.addPokemonInTeam(salapute);
-
-    florian.switchActivePokemon(0);
-
-    //std::cout << carapuce.toString() << std::endl;
+    std::vector<Pokemon> pokemons{Squirtle(1), Charmander(1), Bulbasaur(1)};
+    int randomIndex = std::rand() % pokemons.size();
+    Trainer florian("Florian", pokemons[randomIndex]);
+    florian.addPokemonInTeam(pokemons[randomIndex]);
+    std::cout << "You starter have been choosen automatically: " << std::endl;
     std::cout << florian.toString() << std::endl;
 
     mainMenu(florian);
